@@ -9,6 +9,14 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyparser.json());
 
+// Configuração do CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 var conString = config.urlConnection;
 var client = new Client(conString);
 client.connect(function (err) {
